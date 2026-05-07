@@ -1,7 +1,7 @@
 FROM node:20-alpine
 
-# Install FFmpeg
-RUN apk add --no-cache ffmpeg
+# Install FFmpeg + fonts for text watermark
+RUN apk add --no-cache ffmpeg fontconfig ttf-dejavu
 
 WORKDIR /app
 
@@ -12,9 +12,9 @@ COPY . .
 
 RUN mkdir -p uploads outputs temp
 
-EXPOSE 3000
-
 ENV NODE_ENV=production
-ENV PORT=3000
+# PORT is intentionally NOT set here — Railway injects it at runtime
+
+EXPOSE 3000
 
 CMD ["node", "src/server.js"]

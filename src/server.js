@@ -196,8 +196,8 @@ io.on('connection', socket => {
 // ── Cleanup cron (every 30 min) ─────────────────────────────────────────────
 setInterval(() => cleanupOldFiles([OUTPUT_DIR, UPLOAD_DIR, TEMP_DIR]), 30 * 60 * 1000);
 
-httpServer.listen(PORT, () => {
-  console.log(`\n🎬 Watermark Server running on http://localhost:${PORT}`);
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n🎬 Watermark Server running on 0.0.0.0:${PORT}`);
   console.log(`   Max concurrent jobs: ${MAX_CONCURRENT}`);
   console.log(`   Upload limit: 2 GB\n`);
 });
